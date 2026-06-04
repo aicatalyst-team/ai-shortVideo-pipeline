@@ -1,0 +1,18 @@
+id: knowledge
+name: 知识科普短片
+aliases: ["科普", "知识", "教程", "解释", "观点"]
+description: 解释概念、教程、观点输出
+use_cases:
+  - 解释概念
+  - 教程
+  - 观点输出
+focus:
+  - 结构清晰
+  - 例子直观
+  - 字幕友好
+default_prompt_style: knowledge_explainer
+default_intensity: 标准增强
+default_emotion: 被鼓舞
+default_subject: 普通上班族
+shot_template_key: knowledge
+prompt_director_config_key: knowledge

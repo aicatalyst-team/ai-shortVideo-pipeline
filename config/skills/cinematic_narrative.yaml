@@ -1,0 +1,20 @@
+id: cinematic_narrative
+name: 电影级叙事
+aliases: ["电影", "电影级", "叙事", "情绪短片", "品牌故事"]
+description: 情绪短片、品牌故事、人物成长、城市氛围片
+use_cases:
+  - 情绪短片
+  - 品牌故事
+  - 人物成长
+  - 城市氛围片
+focus:
+  - 镜头语言
+  - 情绪递进
+  - 光影
+  - 节奏
+default_prompt_style: emotional_story
+default_intensity: 标准增强
+default_emotion: 被鼓舞
+default_subject: 普通上班族
+shot_template_key: cinematic_narrative
+prompt_director_config_key: cinematic_narrative

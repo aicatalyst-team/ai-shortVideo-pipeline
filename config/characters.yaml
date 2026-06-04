@@ -1,0 +1,190 @@
+﻿# 角色 IP 资产定义
+# Phase 3.5: 固定美女 IP 形象，保持跨镜头角色一致性
+# R1.1 (W2 D8): 新增 identity / appearance / wardrobe / props / voice / visual_refs 6 类结构化字段
+#              2026-05-19 填入建议值，字段可随时覆盖
+#
+# 使用方式：
+#  1. 每个角色需准备参考图（正面+半侧），放入 config/character_refs/
+#  2. 参考图建议用 AI 文生图生成后人工筛选面部一致性最好的
+#  3. 系统会自动将参考图通过可灵 character_reference 传入生图/生视频 API
+
+default_character: su_wan
+
+su_wan:
+  display_name: 苏晚
+  description: >
+    深栗色长直发及腰，带层次感碎刘海，杏仁色眼眸，心形脸型。
+    日常穿搭为白色V领T恤搭驼色针织开衫，简约金色锁骨链,
+    气质温柔大方又不失利落感。
+  ref_images:
+    front: character_refs/su_wan_front.png
+    side: character_refs/su_wan_side.png
+  visual_tags: >
+    young Chinese woman, long straight deep chestnut brown hair with layered bangs,
+    almond-shaped warm brown eyes, heart-shaped face, white V-neck tee,
+    camel knit cardigan, delicate gold necklace, elegant and warm, natural beauty
+  compatible_styles:
+    - cyberpunk_military
+    - hot_blooded
+    - funny_comedy
+    - cute_healing
+  max_consecutive_shots: 4
+
+  # === R1.1 结构化字段 ===
+  identity:
+    age: "23"
+    profession: "插画师"
+    personality: "温柔但有主见，慢热，对喜欢的事会执着钻研"
+  appearance:
+    hair: "深栗色长直发及腰，带层次感碎刘海"
+    face: "杏仁色眼眸，心形脸型，皮肤偏暖白"
+    body: "身高 163-165cm，纤细修长，姿态优雅"
+  wardrobe:
+    casual: "白色V领T恤搭驼色针织开衫，简约金色锁骨链"
+    formal: "米白色西装外套配纯色衬衫 + 直筒西裤"
+    winter: "燕麦色长款大衣 + 米色羊绒围巾 + 棕色长靴"
+  props:
+    items: ["手绘本", "马克笔", "牛皮笔记本", "白色马克杯", "复古书签"]
+  voice:
+    tts_id: "zh_female_tianmeiyueyue_uranus_bigtts"
+    pace: "舒缓"
+    emotion: "温柔知性"
+  visual_refs:
+    front: character_refs/su_wan_front.png
+    side: character_refs/su_wan_side.png
+    profile_3_4: ""
+    back: ""
+    closeup: ""
+
+lin_yue:
+  display_name: 林悦
+  description: >
+    深焦糖色中长发微卷，空气刘海，金色细框圆眼镜是标志，
+    圆脸偏鹅蛋，笑起来有梨涡。日常穿奶白色针织毛衣搭牛仔裤，
+    书卷气十足的温暖学姐形象。
+  ref_images:
+    front: character_refs/lin_yue_front.png
+    side: character_refs/lin_yue_side.png
+  visual_tags: >
+    young Chinese woman, medium-length wavy dark caramel hair with air bangs,
+    thin gold round glasses, oval face with dimples, cream knit sweater,
+    denim jeans, bookish and warm, soft smile, intellectual style
+  compatible_styles:
+    - cute_healing
+    - funny_comedy
+  max_consecutive_shots: 4
+
+  # === R1.1 结构化字段 ===
+  identity:
+    age: "24"
+    profession: "图书馆员"
+    personality: "书卷气，安静耐心，喜欢分享冷知识，慢热但话题打开后停不下来"
+  appearance:
+    hair: "深焦糖色中长发微卷，空气刘海"
+    face: "金色细框圆眼镜是标志，圆脸偏鹅蛋，笑起来有梨涡"
+    body: "身高 160cm，圆润但不胖，自带亲和力"
+  wardrobe:
+    casual: "奶白色针织毛衣搭牛仔裤"
+    formal: "焦糖色针织开衫 + 卡其色直筒裤"
+    winter: "羊毛 oversize 毛衣 + 格纹长裙 + 焦糖色短靴"
+  props:
+    items: ["精装书", "钢笔", "羊绒围巾", "保温杯", "手账本"]
+  voice:
+    tts_id: "zh_female_qingchezizi_uranus_bigtts"
+    pace: "中速偏慢"
+    emotion: "书卷气，温和"
+  visual_refs:
+    front: character_refs/lin_yue_front.png
+    side: character_refs/lin_yue_side.png
+    profile_3_4: ""
+    back: ""
+    closeup: ""
+
+chen_xing:
+  display_name: 陈星
+  description: >
+    铜棕色齐肩发带空气刘海，大眼睛自带笑意，有浅酒窝。
+    穿搭偏休闲活力——牛仔夹克配条纹T恤或运动卫衣，
+    是闺蜜团里最活泼外向的那个。
+  ref_images:
+    front: character_refs/chen_xing_front.png
+    side: character_refs/chen_xing_side.png
+  visual_tags: >
+    young Chinese woman, shoulder-length copper brown hair with air bangs,
+    bright expressive eyes, shallow dimples, denim jacket over striped tee,
+    playful and energetic, youthful sporty casual style
+  compatible_styles:
+    - funny_comedy
+    - hot_blooded
+    - cute_healing
+  max_consecutive_shots: 4
+
+  # === R1.1 结构化字段 ===
+  identity:
+    age: "22"
+    profession: "短视频博主"
+    personality: "活泼外向，团队气氛担当，话痨但不烦人，会主动拉人开心"
+  appearance:
+    hair: "铜棕色齐肩发带空气刘海"
+    face: "大眼睛自带笑意，有浅酒窝，皮肤健康偏小麦色"
+    body: "身高 162cm，运动型，肩线挺拔"
+  wardrobe:
+    casual: "牛仔夹克配条纹T恤或运动卫衣"
+    formal: "白衬衫 + 卡其工装裤"
+    winter: "短款羽绒服 + 毛线帽 + 短裤加绒打底裤"
+  props:
+    items: ["运动相机", "运动饮料", "口袋零食", "潮牌帽子", "蓝牙耳机"]
+  voice:
+    tts_id: "zh_female_qinqienv_uranus_bigtts"
+    pace: "快"
+    emotion: "活泼亲切"
+  visual_refs:
+    front: character_refs/chen_xing_front.png
+    side: character_refs/chen_xing_side.png
+    profile_3_4: ""
+    back: ""
+    closeup: ""
+
+ye_cheng:
+  display_name: 叶澄
+  description: >
+    深浓缩咖啡色短发波波头（下巴齐），发尾带一抹暗酒红挑染，
+    轮廓分明的鹅蛋脸，冷白肤色。穿黑色高领针织衫，极简银色耳钉，
+    是闺蜜团里最酷最有神秘感的那个。
+  ref_images:
+    front: character_refs/ye_cheng_front.png
+    side: character_refs/ye_cheng_side.png
+  visual_tags: >
+    young Chinese woman, chin-length dark espresso bob with subtle burgundy tips,
+    defined oval face, cool-toned fair skin, black mock-neck sweater,
+    minimalist silver stud earrings, cool and mysterious, indie aesthetic
+  compatible_styles:
+    - cyberpunk_military
+    - hot_blooded
+  max_consecutive_shots: 4
+
+  # === R1.1 结构化字段 ===
+  identity:
+    age: "25"
+    profession: "独立摄影师"
+    personality: "冷静理智，话少但毒舌一击，对喜欢的人极度护短，对陌生人保持距离"
+  appearance:
+    hair: "深浓缩咖啡色短发波波头（下巴齐），发尾带一抹暗酒红挑染"
+    face: "轮廓分明的鹅蛋脸，冷白肤色，眼神犀利"
+    body: "身高 168cm，清瘦，姿态冷感"
+  wardrobe:
+    casual: "黑色高领针织衫，极简银色耳钉"
+    formal: "黑色廓形西装套裙 + 银色长链"
+    winter: "黑色长款风衣 + 黑色围巾 + 黑色机车靴"
+  props:
+    items: ["黑色单反相机", "黑胶唱片", "金属书签", "黑色咖啡杯", "麂皮笔记本"]
+  voice:
+    tts_id: "zh_female_sophie_uranus_bigtts"
+    pace: "慢"
+    emotion: "清冷克制"
+  visual_refs:
+    front: character_refs/ye_cheng_front.png
+    side: character_refs/ye_cheng_side.png
+    profile_3_4: ""
+    back: ""
+    closeup: ""

@@ -1,0 +1,37 @@
+name: social_insight
+display_name: 社会观察
+
+core_concept: >
+  对职场、两性、生活等社会话题输出鲜明观点。
+  文案犀利直白，画面真实生活感，引发讨论和共鸣。
+
+visual_style: >
+  生活纪实感：街拍质感、自然光、真实场景。
+  画面取材日常：办公室、地铁、街道、咖啡厅。
+  色调自然不修饰，保持真实感和代入感。
+
+caption_style: >
+  大号加粗字幕，居中显示。每条字幕≤16字。
+  语气直接犀利，善用反问和对比制造共鸣。
+
+hook_rule: >
+  前3秒：用一句扎心或引战的观点开头，制造讨论欲。
+  例如"月薪3000的人，凭什么看不起送外卖的"
+
+video_spec: 20-40秒，9:16竖版，犀利旁白，快切节奏
+
+operators: []
+
+image_prompt_suffix: "street photography style, natural lighting, urban life scenes, authentic texture, documentary feel"
+kling_negative_prompt: "fantasy, sci-fi, cartoon, anime, low quality, blurry, watermark, text overlay"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 10]
+
+tags_prefix:
+  - 观点
+  - 社会
+  - 职场

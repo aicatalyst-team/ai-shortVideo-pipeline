@@ -1,0 +1,37 @@
+name: knowledge_explainer
+display_name: 知识科普
+
+core_concept: >
+  将冷知识、历史、科学等知识内容用通俗易懂的方式呈现。
+  配图清晰教育感强，旁白讲解精准，让观众觉得"涨知识了"。
+
+visual_style: >
+  教育科普风：清晰明亮、图解风格、适度使用图表和示意图。
+  配图精准匹配知识点，色调以蓝白为主，专业但不刻板。
+  用比喻性的画面让抽象概念具象化。
+
+caption_style: >
+  简洁字幕，重点知识标注。每条字幕≤18字。
+  关键数据用强调方式突出，逻辑清晰，层层递进。
+
+hook_rule: >
+  前3秒：用反常识的事实或震撼数据开头。
+  例如"99%的人都不知道..."、"科学家发现了一个惊人的事实"
+
+video_spec: 25-45秒，9:16竖版，知性女声解说，中等语速
+
+operators: []
+
+image_prompt_suffix: "educational visual metaphor, clean layout, blue-white palette, abstract unlabeled shapes, professional, clear lighting"
+kling_negative_prompt: "dark, gloomy, horror, cartoon, low quality, blurry, watermark, text overlay"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 10]
+
+tags_prefix:
+  - 冷知识
+  - 科普
+  - 涨知识

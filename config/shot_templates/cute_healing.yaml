@@ -1,0 +1,55 @@
+name: cute_healing
+display_name: 治愈萌系分镜
+
+# 适用垂类：cute_healing / funny_comedy / hot_blooded / cyberpunk_military
+# 设计原则：可爱反差、轻盈运镜、高能时刻
+
+shots:
+  - shot_no: 1
+    label: 日常引入
+    duration_sec: 4
+    camera_control:
+      type: pan_right
+      config: {horizontal: 3, vertical: 0, zoom: 0}
+    prompt_hint: "cozy everyday scene, warm interior, natural soft light, relaxed atmosphere"
+    purpose: 建立轻松日常感，铺垫反差
+
+  - shot_no: 2
+    label: 角色特写
+    duration_sec: 4
+    camera_control:
+      type: push_in
+      config: {horizontal: 0, vertical: 0, zoom: 5}
+    prompt_hint: "adorable facial expression close-up, genuine reaction, sparkle in eyes, candid moment"
+    purpose: 捕捉最可爱的瞬间表情
+
+  - shot_no: 3
+    label: 动作全身
+    duration_sec: 5
+    camera_control:
+      type: tilt_down
+      config: {horizontal: 0, vertical: -4, zoom: 0}
+    prompt_hint: "full body action shot, playful movement, cozy outfit, warm background"
+    purpose: 展示完整动作，增加活泼感
+
+  - shot_no: 4
+    label: 互动细节
+    duration_sec: 4
+    camera_control:
+      type: push_in
+      config: {horizontal: -2, vertical: 0, zoom: 4}
+    prompt_hint: "detail interaction, hands or object focus, intimate scale, warm texture"
+    purpose: 聚焦可爱细节或道具互动
+
+  - shot_no: 5
+    label: 高能结尾
+    duration_sec: 5
+    camera_control:
+      type: orbit
+      config: {horizontal: 4, vertical: 0, zoom: 0}
+    prompt_hint: "dynamic ending pose, confident smile, bright background, memorable moment"
+    purpose: 高能收尾，给观众留下印象
+
+cut_style: hard_cut
+min_shots: 4
+max_shots: 5

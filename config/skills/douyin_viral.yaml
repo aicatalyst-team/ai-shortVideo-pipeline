@@ -1,0 +1,20 @@
+id: douyin_viral
+name: 抖音爆款短视频
+aliases: ["抖音", "爆款", "短视频", "viral", "热点"]
+description: 强开头、强反差、强钩子、快节奏信息流
+use_cases:
+  - 强开头
+  - 强反差
+  - 强钩子
+  - 快节奏信息流
+focus:
+  - 前 3 秒
+  - 冲突
+  - 反转
+  - 评论区话题
+default_prompt_style: hot_news_commentary
+default_intensity: 强风格化
+default_emotion: 想转发
+default_subject: 普通上班族
+shot_template_key: douyin_viral
+prompt_director_config_key: douyin_viral

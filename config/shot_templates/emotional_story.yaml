@@ -1,0 +1,55 @@
+name: emotional_story
+display_name: 情感故事分镜
+
+# 适用垂类：emotional_story
+# 设计原则：慢节奏、氛围感、情感递进
+
+shots:
+  - shot_no: 1
+    label: 开场定调
+    duration_sec: 5
+    camera_control:
+      type: pull_out
+      config: {horizontal: 0, vertical: 0, zoom: -3}
+    prompt_hint: "wide establishing shot, warm ambient light, solitary figure, emotional atmosphere"
+    purpose: 建立情绪基调，让观众进入故事世界
+
+  - shot_no: 2
+    label: 情感特写
+    duration_sec: 5
+    camera_control:
+      type: push_in
+      config: {horizontal: 0, vertical: 0, zoom: 4}
+    prompt_hint: "close-up face, subtle emotion, natural expression, soft bokeh background"
+    purpose: 放大情感细节，建立代入感
+
+  - shot_no: 3
+    label: 环境叙事
+    duration_sec: 5
+    camera_control:
+      type: pan_left
+      config: {horizontal: -4, vertical: 0, zoom: 0}
+    prompt_hint: "environmental detail, symbolic object, warm golden light, nostalgic mood"
+    purpose: 用环境元素推进叙事，增加层次感
+
+  - shot_no: 4
+    label: 情感高潮
+    duration_sec: 5
+    camera_control:
+      type: tilt_up
+      config: {horizontal: 0, vertical: 4, zoom: 0}
+    prompt_hint: "upward reveal, hopeful sky, figure silhouette, emotional crescendo"
+    purpose: 情感高潮点，向上运镜配合情绪升华
+
+  - shot_no: 5
+    label: 收尾留白
+    duration_sec: 5
+    camera_control:
+      type: static
+      config: {horizontal: 0, vertical: 0, zoom: 0}
+    prompt_hint: "still frame, lingering emotion, fading light, peaceful ending"
+    purpose: 余韵留白，给观众情感沉淀空间
+
+cut_style: hard_cut
+min_shots: 4
+max_shots: 5

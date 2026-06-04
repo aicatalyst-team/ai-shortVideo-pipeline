@@ -1,0 +1,18 @@
+id: wechat_real
+name: 朋友圈真实感
+aliases: ["朋友圈", "真实", "真实感", "生活记录", "自然"]
+description: 更自然、更像真实生活记录
+use_cases:
+  - 生活记录
+  - 朋友圈分享
+  - 真实体验
+focus:
+  - 克制表达
+  - 生活细节
+  - 不油腻
+default_prompt_style: social_insight
+default_intensity: 克制真实
+default_emotion: 被治愈
+default_subject: 普通上班族
+shot_template_key: wechat_real
+prompt_director_config_key: wechat_real

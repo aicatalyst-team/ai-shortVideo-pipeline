@@ -1,0 +1,55 @@
+name: hot_news_commentary
+display_name: 热搜解说分镜
+
+# 适用垂类：hot_news_commentary
+# 设计原则：快节奏、信息密集、新闻感强
+
+shots:
+  - shot_no: 1
+    label: 冲击开场
+    duration_sec: 3
+    camera_control:
+      type: push_in
+      config: {horizontal: 0, vertical: 0, zoom: 6}
+    prompt_hint: "dramatic close-up, high contrast lighting, news editorial feel, urgent atmosphere"
+    purpose: 3秒内用冲击力抓住注意力
+
+  - shot_no: 2
+    label: 事件全景
+    duration_sec: 4
+    camera_control:
+      type: pull_out
+      config: {horizontal: 0, vertical: 0, zoom: -5}
+    prompt_hint: "wide scene establishing shot, event context, news photography style, realistic"
+    purpose: 交代事件背景和规模感
+
+  - shot_no: 3
+    label: 关键细节
+    duration_sec: 3
+    camera_control:
+      type: push_in
+      config: {horizontal: 2, vertical: 0, zoom: 5}
+    prompt_hint: "key detail close-up, evidence or impact, photojournalistic, sharp focus"
+    purpose: 聚焦最有说服力的细节
+
+  - shot_no: 4
+    label: 数据呈现
+    duration_sec: 4
+    camera_control:
+      type: pan_right
+      config: {horizontal: 5, vertical: 0, zoom: 0}
+    prompt_hint: "abstract data mood, unlabeled colored blocks, physical objects showing impact, no text or numbers"
+    purpose: 配合数据旁白的视觉支撑
+
+  - shot_no: 5
+    label: 结论收尾
+    duration_sec: 4
+    camera_control:
+      type: tilt_up
+      config: {horizontal: 0, vertical: 3, zoom: 0}
+    prompt_hint: "authoritative closing shot, confident framing, news anchor style composition"
+    purpose: 给出结论，增强权威感
+
+cut_style: hard_cut
+min_shots: 4
+max_shots: 5

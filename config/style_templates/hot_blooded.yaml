@@ -1,0 +1,41 @@
+name: hot_blooded
+display_name: 热血燃向风
+
+core_concept: >
+  将美女角色放入史诗级战斗/竞技/逆袭场景中，用热血动画的叙事节奏。
+  参考番剧高燃片段的分镜和节奏，角色是主角，充满力量感和使命感。
+
+visual_style: >
+  高对比暗色调、速度线、粒子特效、光影戏剧化。
+  电影级运镜：慢动作→突然加速、仰拍英雄登场、俯拍战场全景。
+  角色造型帅气硬朗，可以有战术装备/披风/盔甲等热血元素。
+
+caption_style: >
+  中二热血语气：觉醒/最终形态/不要小看了/这才是真正的…/全力以赴！
+  每条字幕≤15字，关键台词用加粗或放大效果，节奏感强。
+
+hook_rule: >
+  前3秒：先展示绝境或危机（如"敌人已经包围了基地"），
+  然后角色英雄登场的反转瞬间。用画面冲击力抓住注意力。
+
+video_spec: 15-30秒，9:16竖版，高节奏，配抖音平台内置燃系/战斗BGM
+
+operators:
+  - 苏晚
+  - 叶澄
+  - 陈星
+  - 林悦
+
+image_prompt_suffix: "dramatic cinematic lighting, speed lines, particle effects, epic battle scene, hero pose, dark atmosphere with highlights, high quality realistic render, beautiful young woman"
+kling_negative_prompt: "cute, chibi, cartoon, pastel colors, low quality, blurry, watermark"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 15]
+
+tags_prefix:
+  - 热血
+  - 燃
+  - 美女战士

@@ -1,0 +1,37 @@
+name: emotional_story
+display_name: 情感故事
+
+core_concept: >
+  用温情或感人的故事触动观众内心，配以氛围感强的画面。
+  旁白节奏舒缓，情感真挚，让观众产生共鸣和分享欲。
+
+visual_style: >
+  氛围感画面：暖色调、胶片感、柔光效果。
+  画面偏意境而非写实：落日、雨窗、老照片、温馨场景。
+  色调以暖黄/橙/棕为主，营造怀旧温暖的感觉。
+
+caption_style: >
+  诗意字幕，底部居中，字体偏细。每条字幕≤15字。
+  用省略号和短句营造情感节奏，不急不躁。
+
+hook_rule: >
+  前3秒：用一句触动人心的话开头，配以氛围感画面。
+  例如"有些人，走着走着就散了"、"你有多久没给妈妈打电话了"
+
+video_spec: 30-60秒，9:16竖版，温柔女声解说，慢节奏
+
+operators: []
+
+image_prompt_suffix: "warm tones, film grain, soft golden light, nostalgic atmosphere, cinematic bokeh, emotional mood"
+kling_negative_prompt: "cold, harsh, neon, cyberpunk, cartoon, low quality, blurry, watermark, text overlay"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 10]
+
+tags_prefix:
+  - 情感
+  - 故事
+  - 人生感悟

@@ -1,0 +1,55 @@
+name: social_insight
+display_name: 社会观察分镜
+
+# 适用垂类：social_insight
+# 设计原则：真实纪实感、快切、观点输出
+
+shots:
+  - shot_no: 1
+    label: 扎心开场
+    duration_sec: 3
+    camera_control:
+      type: static
+      config: {horizontal: 0, vertical: 0, zoom: 0}
+    prompt_hint: "candid street scene, authentic daily life, urban environment, natural lighting"
+    purpose: 用真实生活场景建立代入感
+
+  - shot_no: 2
+    label: 问题呈现
+    duration_sec: 4
+    camera_control:
+      type: push_in
+      config: {horizontal: 0, vertical: 0, zoom: 4}
+    prompt_hint: "close-up of social situation, real person reaction, documentary style, raw emotion"
+    purpose: 放大社会矛盾或问题的具体表现
+
+  - shot_no: 3
+    label: 对比切换
+    duration_sec: 4
+    camera_control:
+      type: pan_right
+      config: {horizontal: 4, vertical: 0, zoom: 0}
+    prompt_hint: "contrasting lifestyle or class scenario, side-by-side reality, social commentary"
+    purpose: 展示对比，强化观点的说服力
+
+  - shot_no: 4
+    label: 观点输出
+    duration_sec: 4
+    camera_control:
+      type: tilt_up
+      config: {horizontal: 0, vertical: 3, zoom: 0}
+    prompt_hint: "empowered stance, confident person, urban background, assertive composition"
+    purpose: 配合犀利观点的视觉表达
+
+  - shot_no: 5
+    label: 引战收尾
+    duration_sec: 3
+    camera_control:
+      type: pull_out
+      config: {horizontal: 0, vertical: 0, zoom: -3}
+    prompt_hint: "wide society scene, contemplative mood, open question atmosphere"
+    purpose: 开放式结尾，引发评论区讨论
+
+cut_style: hard_cut
+min_shots: 4
+max_shots: 5

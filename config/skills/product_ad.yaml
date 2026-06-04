@@ -1,0 +1,19 @@
+id: product_ad
+name: 产品广告片
+aliases: ["广告", "产品", "卖货", "品牌广告", "转化"]
+description: 产品卖点、使用场景、利益点转化
+use_cases:
+  - 产品卖点
+  - 使用场景
+  - 利益点转化
+focus:
+  - 问题
+  - 解决方案
+  - 视觉记忆点
+  - 行动召唤
+default_prompt_style: hot_news_commentary
+default_intensity: 标准增强
+default_emotion: 想购买/咨询
+default_subject: 产品/品牌
+shot_template_key: product_ad
+prompt_director_config_key: product_ad

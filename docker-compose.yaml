@@ -1,0 +1,152 @@
+﻿x-app-base: &app-base
+  image: ai-platform-app:latest
+  build: .
+  depends_on:
+    postgres:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+  environment:
+    PYTHONUNBUFFERED: "1"
+    PYTHONIOENCODING: "utf-8"
+    DATABASE_URL: "postgresql+asyncpg://postgres:postgres@postgres:5432/myaivideos"
+    REDIS_URL: "redis://redis:6379/0"
+    # HuggingFace 国内镜像（faster-whisper 模型下载用，避开 huggingface.co 被墙）
+    HF_ENDPOINT: "https://hf-mirror.com"
+    # faster-whisper 模型缓存目录（落到挂载卷，重启不丢）
+    HF_HOME: "/app/data/hf_cache"
+    # 手动放置的 faster-whisper 模型本地目录（容器内路径），设了就不走 HF 下载
+    # 对应宿主机：./data/whisper-small/  ← 把模型文件解压到这里
+    WHISPER_MODEL_PATH: "/app/data/whisper-small"
+    GATEWAY_INTERNAL_BASE: "http://gateway:8080"
+    LLM_USE_GATEWAY: "1"
+    # Langfuse 全链路可观测（SDK 装饰器直接读 os.environ，必须显式透传）
+    LANGFUSE_PUBLIC_KEY: "${LANGFUSE_PUBLIC_KEY:-}"
+    LANGFUSE_SECRET_KEY: "${LANGFUSE_SECRET_KEY:-}"
+    LANGFUSE_HOST: "${LANGFUSE_HOST:-https://cloud.langfuse.com}"
+    LANGFUSE_ENABLED: "${LANGFUSE_ENABLED:-false}"
+  volumes:
+    - ./.env:/app/.env:ro
+    - ./output:/app/output
+    - ./data:/app/data
+  restart: unless-stopped
+  mem_limit: 2g
+  cpus: '1.5'
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "50m"
+      max-file: "5"
+
+services:
+  # ── PostgreSQL ─────────────────────────────────────────────────────────────
+  postgres:
+    image: docker.m.daocloud.io/library/postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myaivideos
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ── Redis ──────────────────────────────────────────────────────────────────
+  redis:
+    image: docker.m.daocloud.io/library/redis:7-alpine
+    ports: ["6379:6379"]
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  minio:
+    image: quay.io/minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: "${MINIO_ROOT_USER:-minioadmin}"
+      MINIO_ROOT_PASSWORD: "${MINIO_ROOT_PASSWORD:-minioadmin123}"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  minio-init:
+    image: quay.io/minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD:-minioadmin123};
+      mc mb -p local/ai-platform-public || true;
+      mc mb -p local/ai-platform-private || true;
+      mc anonymous set download local/ai-platform-public;
+      echo '[minio-init] buckets ready';
+      "
+    restart: "no"
+
+  # ── FastAPI orchestrator ───────────────────────────────────────────────────
+  orchestrator:
+    <<: *app-base
+    ports: ["8000:8000"]
+
+  # ── ARQ worker (async job processing) ─────────────────────────────────────
+  worker:
+    <<: *app-base
+    command: ["arq", "core.scheduler.WorkerSettings"]
+
+  # Java Gateway
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    image: ai-platform-gateway:latest
+    ports: ["8080:8080"]
+    environment:
+      # JWT 密钥强制必填，缺失则 compose 启动失败，禁止静默回落 dev secret。
+      # 服务器 .env 必须显式设置 GATEWAY_AUTH_JWT_SECRET=<强随机 >=32 字节>
+      GATEWAY_AUTH_JWT_SECRET: "${GATEWAY_AUTH_JWT_SECRET:?GATEWAY_AUTH_JWT_SECRET must be set in .env (no fallback to dev secret; generate via `openssl rand -base64 32`)}"
+      GATEWAY_UPSTREAM_PYTHON_BASE_URL: "http://orchestrator:8000"
+      GATEWAY_STORAGE_MINIO_ENDPOINT: "${MINIO_INTERNAL_ENDPOINT:-http://minio:9000}"
+      GATEWAY_STORAGE_MINIO_PUBLIC_ENDPOINT: "${MINIO_PUBLIC_ENDPOINT:-http://localhost:9000}"
+      GATEWAY_STORAGE_MINIO_ACCESS_KEY: "${MINIO_ROOT_USER:-minioadmin}"
+      GATEWAY_STORAGE_MINIO_SECRET_KEY: "${MINIO_ROOT_PASSWORD:-minioadmin123}"
+      GATEWAY_STORAGE_MINIO_PUBLIC_BUCKET: "${MINIO_PUBLIC_BUCKET:-ai-platform-public}"
+      GATEWAY_STORAGE_MINIO_PRIVATE_BUCKET: "${MINIO_PRIVATE_BUCKET:-ai-platform-private}"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/myaivideos"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      DEEPSEEK_API_KEY: "${DEEPSEEK_API_KEY:-}"
+      QWEN_API_KEY: "${QWEN_API_KEY:-}"
+      GLM_API_KEY: "${GLM_API_KEY:-}"
+      KLING_BASE_URL: "${KLING_BASE_URL:-https://api-beijing.klingai.com}"
+      KLING_ACCESS_KEY: "${KLING_ACCESS_KEY:-}"
+      KLING_SECRET_KEY: "${KLING_SECRET_KEY:-}"
+      KLING_VIDEO_MODEL: "${KLING_VIDEO_MODEL:-kling-v2-5-turbo}"
+      SPRING_PROFILES_ACTIVE: "default"
+    depends_on:
+      minio:
+        condition: service_healthy
+      orchestrator:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:
+  miniodata:

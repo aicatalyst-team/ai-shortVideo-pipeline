@@ -1,0 +1,337 @@
+﻿# 环境卡资产定义
+# R1.2 (W2 D9): 场景作为独立资产，与角色卡同级。
+#              用于在 prompt 构造时给文生图提供"地点 + 光线 + 道具 + 氛围"四要素。
+#
+# Schema 与 character_manager 风格统一：
+#  - 顶层 default_environment 指定首选场景 key
+#  - 每个环境：display_name / description / lighting / props / mood / visual_tags / compatible_styles
+#  - lighting 是 nested dataclass（style/intensity/direction/color_temp）
+#  - props 是顶层 list[str]（v5 §五 D9 验收命令: get_environment('coffee_shop').props 返回 list）
+#  - mood 是 nested dataclass（primary/secondary/keywords）
+#
+# 2026-05-19 填入 10 个常见场景的建议值。字段可随时覆盖。
+#
+# lighting.style 取值：warm / cold / natural / dramatic / soft / hard / golden / neon
+# lighting.intensity 取值：强 / 中 / 弱
+# lighting.direction 取值：顶光 / 侧光 / 逆光 / 平光 / 多向
+
+default_environment: coffee_shop
+
+coffee_shop:
+  display_name: 咖啡馆
+  description: >
+    都市精品独立咖啡馆，原木装修，暖黄色氛围灯，
+    适合都市生活、文艺独白、好友聚会类场景。
+  lighting:
+    style: warm
+    intensity: 中
+    direction: 侧光
+    color_temp: "3000K 暖黄"
+  props:
+    - 手冲咖啡机
+    - 原木长桌
+    - 黑胶留声机
+    - 绿植
+    - 黑板菜单
+    - 复古吊灯
+  mood:
+    primary: 温暖
+    secondary: 文艺
+    keywords:
+      - chill
+      - 都市
+      - 晨光
+  visual_tags: >
+    cozy modern coffee shop, warm wooden interior, ambient yellow lighting,
+    espresso machine, vinyl record player, hanging plants, urban hipster atmosphere
+  compatible_styles:
+    - emotional_story
+    - cute_healing
+    - social_insight
+
+classroom:
+  display_name: 教室
+  description: >
+    阳光透过白色窗帘洒进的教室，长木桌椅，黑板上有粉笔字，
+    适合校园回忆、知识科普、青春主题场景。
+  lighting:
+    style: natural
+    intensity: 中
+    direction: 侧光
+    color_temp: "5000K 自然光"
+  props:
+    - 黑板
+    - 粉笔
+    - 木质课桌
+    - 校园书包
+    - 白色窗帘
+    - 阳光灰尘
+  mood:
+    primary: 怀旧
+    secondary: 清新
+    keywords:
+      - 青春
+      - 校园
+      - 阳光
+  visual_tags: >
+    sunny classroom with white curtains, wooden desks, blackboard with chalk writing,
+    nostalgic school atmosphere, soft natural daylight, dust particles in sunlight
+  compatible_styles:
+    - emotional_story
+    - knowledge_explainer
+    - cute_healing
+
+bedroom:
+  display_name: 卧室
+  description: >
+    都市公寓卧室，简约风格，米色床品，窗边放绿植与香薰，
+    适合独白、夜读、晨起、情感故事类场景。
+  lighting:
+    style: soft
+    intensity: 弱
+    direction: 侧光
+    color_temp: "2700K 暖橙"
+  props:
+    - 米色床品
+    - 香薰蜡烛
+    - 床头灯
+    - 绿植
+    - 摊开的书
+    - 毛绒地毯
+  mood:
+    primary: 安静
+    secondary: 私密
+    keywords:
+      - 夜晚
+      - 自我对话
+      - 治愈
+  visual_tags: >
+    cozy modern bedroom, minimalist beige bedding, warm bedside lamp,
+    scented candles, indoor plants, soft ambient lighting, intimate quiet atmosphere
+  compatible_styles:
+    - emotional_story
+    - cute_healing
+
+park:
+  display_name: 公园
+  description: >
+    城市公园，草坪 + 步道 + 长椅，远处有湖与树林，
+    适合户外漫步、闺蜜聚会、宠物、季节感主题场景。
+  lighting:
+    style: natural
+    intensity: 强
+    direction: 多向
+    color_temp: "5500K 自然光"
+  props:
+    - 木质长椅
+    - 步道
+    - 草坪
+    - 湖面倒影
+    - 樱花树或银杏树
+    - 路灯
+  mood:
+    primary: 治愈
+    secondary: 清新
+    keywords:
+      - 户外
+      - 季节感
+      - 慢生活
+  visual_tags: >
+    urban park with green lawn, walking path, wooden bench, distant lake,
+    seasonal trees, natural daylight, fresh outdoor atmosphere
+  compatible_styles:
+    - emotional_story
+    - cute_healing
+    - hot_blooded
+
+office:
+  display_name: 办公室
+  description: >
+    现代开放式办公室，电脑屏幕 + 白板 + 玻璃隔间，
+    适合职场、效率、社畜共鸣、加班场景。
+  lighting:
+    style: cold
+    intensity: 中
+    direction: 顶光
+    color_temp: "4500K 冷白"
+  props:
+    - 双屏电脑
+    - 白板
+    - 玻璃隔间
+    - 马克杯
+    - 文件堆
+    - 绿植小盆栽
+  mood:
+    primary: 紧张
+    secondary: 专业
+    keywords:
+      - 职场
+      - 加班
+      - 都市
+  visual_tags: >
+    modern open-plan office, dual monitor setup, glass partitions, whiteboard with notes,
+    cool fluorescent lighting, urban professional atmosphere, end-of-day vibe
+  compatible_styles:
+    - social_insight
+    - hot_news_commentary
+    - funny_comedy
+
+street:
+  display_name: 街道
+  description: >
+    亚洲都市夜晚街道，霓虹招牌 + 湿润路面 + 路人，
+    适合都市观察、夜行、孤独感、cyberpunk 场景。
+  lighting:
+    style: neon
+    intensity: 强
+    direction: 多向
+    color_temp: "混合 6500K + 霓虹"
+  props:
+    - 霓虹招牌
+    - 湿润路面
+    - 便利店灯光
+    - 共享单车
+    - 出租车红色尾灯
+    - 路灯
+  mood:
+    primary: 孤独
+    secondary: 都市感
+    keywords:
+      - 夜
+      - 霓虹
+      - cyberpunk
+  visual_tags: >
+    asian urban street at night, neon signs reflection on wet pavement,
+    convenience store glow, taxi taillights, mixed temperature lighting, cyberpunk atmosphere
+  compatible_styles:
+    - cyberpunk_military
+    - social_insight
+    - emotional_story
+
+kitchen:
+  display_name: 厨房
+  description: >
+    家用现代厨房，木质操作台 + 白色橱柜 + 暖色吊灯，
+    适合美食、家庭、生活记录、独居场景。
+  lighting:
+    style: warm
+    intensity: 中
+    direction: 顶光
+    color_temp: "3500K 暖白"
+  props:
+    - 木质砧板
+    - 铸铁锅
+    - 调味料架
+    - 白色橱柜
+    - 吊灯
+    - 新鲜食材
+  mood:
+    primary: 温暖
+    secondary: 烟火气
+    keywords:
+      - 家
+      - 美食
+      - 烟火
+  visual_tags: >
+    modern home kitchen, wooden countertop, white cabinets, warm pendant lights,
+    cast iron pan, fresh ingredients on cutting board, cozy domestic atmosphere
+  compatible_styles:
+    - cute_healing
+    - emotional_story
+    - funny_comedy
+
+car_interior:
+  display_name: 车内
+  description: >
+    都市夜晚车内，副驾视角，窗外街灯光晕，仪表盘冷蓝光，
+    适合公路、夜归、独白、对话场景。
+  lighting:
+    style: cold
+    intensity: 弱
+    direction: 侧光
+    color_temp: "混合 6500K + 街灯暖橙"
+  props:
+    - 方向盘
+    - 仪表盘冷光
+    - 副驾水杯
+    - 后视镜挂饰
+    - 窗外街灯光晕
+    - 中控屏
+  mood:
+    primary: 私密
+    secondary: 思绪
+    keywords:
+      - 夜归
+      - 公路
+      - 独白
+  visual_tags: >
+    car interior at night, urban street lights glowing through windows,
+    cool dashboard glow, intimate private space, passenger seat perspective, contemplative mood
+  compatible_styles:
+    - emotional_story
+    - social_insight
+    - cyberpunk_military
+
+study_room:
+  display_name: 书房
+  description: >
+    满墙书架的书房，木质书桌 + 黄铜台灯 + 真皮椅，
+    适合知识科普、深度思考、文化主题场景。
+  lighting:
+    style: warm
+    intensity: 中
+    direction: 侧光
+    color_temp: "2800K 暖橙"
+  props:
+    - 满墙书架
+    - 木质书桌
+    - 黄铜台灯
+    - 真皮转椅
+    - 地球仪
+    - 钢笔
+  mood:
+    primary: 沉静
+    secondary: 智识
+    keywords:
+      - 阅读
+      - 思考
+      - 学术
+  visual_tags: >
+    home study with floor-to-ceiling bookshelves, wooden desk, brass desk lamp,
+    leather swivel chair, warm focused lighting, intellectual contemplative atmosphere
+  compatible_styles:
+    - knowledge_explainer
+    - emotional_story
+    - social_insight
+
+seaside:
+  display_name: 海边
+  description: >
+    海岸线，金色沙滩 + 海浪 + 远处礁石，黄昏时分，
+    适合开阔感、自由、治愈、回忆主题场景。
+  lighting:
+    style: golden
+    intensity: 强
+    direction: 逆光
+    color_temp: "2500K 黄昏金"
+  props:
+    - 金色沙滩
+    - 海浪
+    - 礁石
+    - 海鸥
+    - 远处帆船
+    - 木栈道
+  mood:
+    primary: 自由
+    secondary: 辽阔
+    keywords:
+      - 黄昏
+      - 治愈
+      - 远方
+  visual_tags: >
+    seaside at golden hour, sandy beach with gentle waves, distant rocks and sailboats,
+    seagulls, wooden boardwalk, dramatic backlight, expansive healing atmosphere
+  compatible_styles:
+    - emotional_story
+    - cute_healing
+    - hot_blooded

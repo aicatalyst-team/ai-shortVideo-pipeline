@@ -1,0 +1,41 @@
+name: funny_comedy
+display_name: 搞笑整活风
+
+core_concept: >
+  用美女角色演绎各种搞笑/尴尬/反转的日常场景，核心是制造意料之外的荒诞感。
+  参考抖音热门搞笑视频结构，保持高密度笑点和快节奏。
+
+visual_style: >
+  明亮饱和色彩、快速运镜、夸张表情特写。
+  场景多样化：办公室/厨房/健身房/学校，角色以反差身份出现在趣味场景中。
+  写实感为主，重点是表情到位、反应夸张。
+
+caption_style: >
+  网络热梗语气：绝了/离谱/什么操作/笑死/完全没想到/大结局是…
+  每条字幕≤12字，密集切换，前3秒必须制造悬念或反转预期。
+
+hook_rule: >
+  前3秒：抛出一个看似正常但即将翻车的场景（如"闺蜜团挑战24小时不笑"），
+  让观众产生"接下来会怎样"的期待。反转越快越好。
+
+video_spec: 15-30秒，9:16竖版，节奏快，配抖音平台内置搞笑BGM
+
+operators:
+  - 苏晚
+  - 陈星
+  - 林悦
+  - 叶澄
+
+image_prompt_suffix: "bright saturated colors, dynamic angle, exaggerated facial expression, comedic scene setup, high quality realistic render, beautiful young woman"
+kling_negative_prompt: "dark, gloomy, realistic military, low quality, blurry, watermark"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 15]
+
+tags_prefix:
+  - 搞笑
+  - 闺蜜日常
+  - 笑死我了

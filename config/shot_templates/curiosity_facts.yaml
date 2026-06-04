@@ -1,0 +1,55 @@
+name: curiosity_facts
+display_name: 奇闻趣事分镜
+
+# 适用垂类：curiosity_facts / knowledge_explainer
+# 设计原则：悬疑递进、层层揭秘、视觉冲击
+
+shots:
+  - shot_no: 1
+    label: 悬疑开场
+    duration_sec: 4
+    camera_control:
+      type: push_in
+      config: {horizontal: 0, vertical: -1, zoom: 5}
+    prompt_hint: "mysterious close-up, dark atmosphere, hidden detail reveal, suspenseful lighting"
+    purpose: 制造强烈悬念，让观众想看下去
+
+  - shot_no: 2
+    label: 环境揭示
+    duration_sec: 5
+    camera_control:
+      type: orbit
+      config: {horizontal: 3, vertical: 0, zoom: 0}
+    prompt_hint: "slow orbit reveal, unusual environment, deep sea or space or ancient ruins, epic scale"
+    purpose: 揭示奇异环境的全貌，制造震撼感
+
+  - shot_no: 3
+    label: 核心证据
+    duration_sec: 4
+    camera_control:
+      type: push_in
+      config: {horizontal: 0, vertical: 0, zoom: 7}
+    prompt_hint: "extreme close-up evidence, impossible detail, macro texture, dramatic contrast"
+    purpose: 聚焦最不可思议的核心证据
+
+  - shot_no: 4
+    label: 对比反差
+    duration_sec: 4
+    camera_control:
+      type: pan_left
+      config: {horizontal: -5, vertical: 0, zoom: 0}
+    prompt_hint: "contrast shot, normal vs extraordinary, revealing comparison, mind-blowing scale"
+    purpose: 通过对比放大奇异程度
+
+  - shot_no: 5
+    label: 真相揭晓
+    duration_sec: 5
+    camera_control:
+      type: pull_out
+      config: {horizontal: 0, vertical: 2, zoom: -4}
+    prompt_hint: "grand reveal, epic scale, awe-inspiring view, mystery resolved atmosphere"
+    purpose: 最终揭示真相，留下震撼余韵
+
+cut_style: hard_cut
+min_shots: 4
+max_shots: 5

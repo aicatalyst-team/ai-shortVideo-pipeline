@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual env
+.venv/
+venv/
+env/
+ENV/
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+*.env
+config.local.*
+*.secret
+
+# Runtime output
+output/
+*.mp4
+*.webm
+*.mov
+cat_memory.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+.mvn/wrapper/maven-wrapper.jar
+hs_err_pid*.log
+
+# Node / Frontend
+node_modules/
+.npm/
+.pnp.*
+sl-vue/dist/
+
+# Misc cache
+data/hf_cache/
+
+# Logs
+*.log
+logs/
+data/logs/*.log*
+

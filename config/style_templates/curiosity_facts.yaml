@@ -1,0 +1,37 @@
+name: curiosity_facts
+display_name: 奇闻趣事
+
+core_concept: >
+  猎奇、未解之谜、世界之最等引发好奇心的内容。
+  用悬疑感的旁白和画面制造"想看下去"的欲望，信息密度高。
+
+visual_style: >
+  悬疑猎奇风：暗色调、高对比、戏剧性光影。
+  画面偏神秘感：深海、宇宙、古迹、微观世界。
+  色调以深蓝/暗紫/黑金为主，营造探索未知的氛围。
+
+caption_style: >
+  渐显字幕，悬念式断句。每条字幕≤18字。
+  善用问号和省略号制造悬念："但是..."、"真相是什么？"
+
+hook_rule: >
+  前3秒：抛出一个令人震惊的事实或画面，制造强烈好奇心。
+  例如"在深海3000米，发现了一个不可能存在的东西"
+
+video_spec: 25-50秒，9:16竖版，磁性男声解说，悬念节奏
+
+operators: []
+
+image_prompt_suffix: "dark mysterious atmosphere, deep blue and purple tones, dramatic contrast, cinematic lighting, exploration mood"
+kling_negative_prompt: "cute, pastel, bright cheerful, cartoon, low quality, blurry, watermark, text overlay"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 10]
+
+tags_prefix:
+  - 奇闻
+  - 冷知识
+  - 未解之谜

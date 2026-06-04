@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <!--
+   部署日补：Dockerfile COPY .mvn/settings.xml 文件之前不存在，
+  Maven build 找不到文件 → fail。这里加阿里云镜像，国内 build 速度 10x。
+  -->
+  <mirrors>
+  <mirror>
+  <id>aliyun-public</id>
+  <name>Aliyun Maven Public</name>
+  <url>https://maven.aliyun.com/repository/public</url>
+  <mirrorOf>*</mirrorOf>
+  </mirror>
+  </mirrors>
+</settings>

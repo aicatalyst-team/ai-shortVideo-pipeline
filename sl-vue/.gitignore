@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+!.env.example
+*.local
+.vite/
+.typecheck/
+vite.config.d.ts
+tailwind.config.d.ts
+*.log

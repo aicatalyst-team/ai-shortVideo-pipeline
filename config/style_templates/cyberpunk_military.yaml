@@ -1,0 +1,40 @@
+name: cyberpunk_military
+display_name: 赛博朋克军事风
+
+core_concept: >
+  将热门游戏动画或军事题材视频场景，用固定美女 IP 来演绎。
+  保留赛博朋克的视觉质感与戏剧张力，角色在未来战术场景中展现反差魅力。
+
+visual_style: >
+  赛博朋克军事风：霓虹勾边、冷暖高对比光、金属与烟雾、抽象几何光效。
+  保留高级科技质感，但所有光效必须是无字母、无数字、无符号的纯几何线条。
+  写实电影感或高质量3D渲染，绝对不要Q版卡通。角色穿着战术风装备或科技感服饰，动作干练帅气。
+
+caption_style: >
+  全程军事无线电语气：收到/执行/报告/请求支援/任务失败原因:___。
+  每条字幕≤15字，节奏快，前3秒必须出现核心笑点设置。
+
+hook_rule: >
+  前3秒：正经战术/游戏动画画面 + 角色反差行为，认知断层越大越好。不要温水开场。
+
+video_spec: 15-30秒，9:16竖版，无对白，配抖音平台内置战术BGM
+
+operators:
+  - 苏晚
+  - 叶澄
+  - 陈星
+  - 林悦
+
+image_prompt_suffix: "cyberpunk military aesthetic, neon rim lighting, cold-warm high contrast, metallic textures, abstract geometric light overlays without glyphs, cinematic 3D render, beautiful young woman"
+kling_negative_prompt: "cartoon, chibi, low quality, blurry, watermark"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 15]
+
+tags_prefix:
+  - 赛博朋克
+  - 美女
+  - 战术风

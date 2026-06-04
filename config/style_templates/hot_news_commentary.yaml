@@ -1,0 +1,37 @@
+name: hot_news_commentary
+display_name: 热搜解说
+
+core_concept: >
+  对社会热点事件进行快速解读，高信息密度旁白配合新闻感配图，
+  让观众在30秒内了解事件全貌。节奏快、信息量大、观点鲜明。
+
+visual_style: >
+  新闻纪实感：高饱和度、冷色调为主、信息图表风格。
+  配图要与解说内容强关联：事件现场感、数据可视化、关键人物场景。
+  真实质感，避免过度美化，保持紧迫感和新闻感。
+
+caption_style: >
+  大号加粗字幕，关键数据和人名高亮。每条字幕≤20字。
+  用数字和事实增加说服力，节奏密集，不留空白。
+
+hook_rule: >
+  前3秒：抛出最劲爆的数据或反直觉结论，制造认知冲突。
+  例如"你绝对想不到..."、"刚刚，一件大事发生了"、"全网都在讨论..."
+
+video_spec: 20-45秒，9:16竖版，沉稳男声解说，快节奏
+
+operators: []
+
+image_prompt_suffix: "news editorial style, high saturation, cold tones, dramatic lighting, photojournalistic, visually layered but text-free"
+kling_negative_prompt: "cartoon, anime, cute, pastel, low quality, blurry, watermark, text overlay"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 10]
+
+tags_prefix:
+  - 热搜
+  - 解说
+  - 热点

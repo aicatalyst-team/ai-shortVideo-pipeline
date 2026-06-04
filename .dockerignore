@@ -1,0 +1,13 @@
+.env
+.git
+__pycache__
+*.pyc
+node_modules/
+venv/
+tests/
+cookies/
+output/
+data/
+.idea/
+*.md
+!requirements.txt

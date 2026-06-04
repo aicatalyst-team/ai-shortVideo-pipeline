@@ -1,0 +1,41 @@
+name: cute_healing
+display_name: 治愈萌系风
+
+core_concept: >
+  将日常生活场景用温馨可爱的方式演绎，突出角色的甜美和治愈感。
+  画面柔和温暖，节奏舒缓但有惊喜，让观众感到放松和快乐。
+
+visual_style: >
+  暖色调柔光：日系胶片质感、柔焦光晕、暖黄/粉色主调。
+  精致写实风格，人物皮肤质感细腻自然。
+  场景以室内温馨环境为主：阳光书桌、咖啡厅、花店、窗台。
+
+caption_style: >
+  温柔日常语气：嗯？/哇塞/好困/又在偷吃/被发现了…
+  每条字幕≤12字，可以用省略号营造慵懒感，偶尔加颜文字。
+
+hook_rule: >
+  前3秒：出其不意的可爱反应（如突然转头微笑、被吓到的表情、偷偷做小动作），
+  配合一个简短的悬念字幕，引发好奇心。
+
+video_spec: 15-30秒，9:16竖版，可配轻音乐BGM
+
+operators:
+  - 苏晚
+  - 林悦
+  - 陈星
+  - 叶澄
+
+image_prompt_suffix: "soft warm lighting, film grain, pastel color palette, cozy indoor scene, natural skin texture, bokeh background, beautiful young woman"
+kling_negative_prompt: "dark, gloomy, violent, cartoon, low quality, blurry"
+
+positive_realism_suffix: "realistic skin texture with visible pores, slight skin imperfections, natural under-eye shadows, asymmetric facial features, candid unposed expression, shot on iPhone 13 Pro, natural daylight, 35mm film grain, slight motion blur, raw photo unedited, documentary photography style"
+negative_prompt: "perfect skin, flawless, instagram filter, beauty filter, smooth skin, airbrushed, plastic, doll-like, symmetric, professional studio lighting, glossy, polished, retouched, hyperreal, CGI, 3D render, beauty cam, AI-generated look, oversaturated, plastic skin, mannequin"
+
+aspect_ratio: "9:16"
+duration_range: [5, 15]
+
+tags_prefix:
+  - 治愈
+  - 日常
+  - 甜美

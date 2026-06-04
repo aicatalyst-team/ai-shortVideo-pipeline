@@ -1,0 +1,165 @@
+﻿server:
+  port: 8080
+
+spring:
+  application:
+  name: ai-platform-gateway
+  aop:
+  auto: true
+  proxy-target-class: true
+  webflux:
+  base-path: /
+  datasource:
+  url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5432/myaivideos}"
+  username: "${POSTGRES_USER:postgres}"
+  password: "${POSTGRES_PASSWORD:postgres}"
+  driver-class-name: org.postgresql.Driver
+  servlet:
+  multipart:
+  max-file-size: 11MB
+  max-request-size: 12MB
+
+gateway:
+  auth:
+  jwt-secret: "dev-only-secret-please-override-in-production-32bytes-min"
+  jwt-expiration-seconds: 86400
+  public-paths:
+  - /actuator/health
+  - /actuator/info
+  - /actuator/prometheus
+  - /health
+  - /internal/**
+  upstream:
+  python-base-url: "http://orchestrator:8000"
+  timeout-seconds: 30
+  connect-timeout-ms: 5000
+  retry-max-attempts: 2
+  retry-initial-backoff-ms: 100
+
+  storage:
+  minio:
+  endpoint: "${GATEWAY_STORAGE_MINIO_ENDPOINT:http://localhost:9000}"
+  public-endpoint: "${GATEWAY_STORAGE_MINIO_PUBLIC_ENDPOINT:http://localhost:9000}"
+  access-key: "${GATEWAY_STORAGE_MINIO_ACCESS_KEY:minioadmin}"
+  secret-key: "${GATEWAY_STORAGE_MINIO_SECRET_KEY:minioadmin123}"
+  public-bucket: "${GATEWAY_STORAGE_MINIO_PUBLIC_BUCKET:ai-platform-public}"
+  private-bucket: "${GATEWAY_STORAGE_MINIO_PRIVATE_BUCKET:ai-platform-private}"
+  upload-max-bytes: 10485760
+  thumbnail-max-side: 512
+
+  llm:
+  timeout-seconds: 60
+  provider-order:
+  - deepseek
+  - qwen
+  - glm
+  blacklist:
+  consecutive-failures-threshold: 3
+  ttl-seconds: 300
+  deepseek:
+  base-url: "https://api.deepseek.com/v1"
+  api-key: "${DEEPSEEK_API_KEY:}"
+  default-model: deepseek-chat
+  qwen:
+  base-url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api-key: "${QWEN_API_KEY:}"
+  default-model: qwen-plus
+  glm:
+  base-url: "https://open.bigmodel.cn/api/paas/v4"
+  api-key: "${GLM_API_KEY:}"
+  default-model: glm-4-plus
+
+  kling:
+  base-url: "${KLING_BASE_URL:https://api-beijing.klingai.com}"
+  access-key: "${KLING_ACCESS_KEY:}"
+  secret-key: "${KLING_SECRET_KEY:}"
+  default-model: "${KLING_VIDEO_MODEL:kling-v2-5-turbo}"
+  default-mode: "${KLING_DEFAULT_MODE:std}"
+  timeout-seconds: 30
+  connect-timeout-ms: 10000
+
+  ratelimit:
+  enabled: true
+  rules:
+  - path: "/api/v1/clips/*/regenerate"
+    user-per-minute: 5
+    global-per-minute: 30
+  - path: "/api/v1/frames/upload"
+    user-per-minute: 20
+    global-per-minute: 100
+  - path: "/api/v1/storyboards/*"
+    user-per-minute: 60
+    global-per-minute: 600
+  - path: "/api/v1/storyboards/*/preview"
+    user-per-minute: 10
+    global-per-minute: 60
+  - path: "/api/v1/jobs/*"
+    user-per-minute: 120
+    global-per-minute: 1000
+  default-rule:
+  path: "**"
+  user-per-minute: 30
+  global-per-minute: 200
+  whitelist:
+  - /actuator/**
+  - /health
+  - /api/v1/jobs/*/stream
+  - /internal/**
+
+resilience4j:
+  circuitbreaker:
+  configs:
+  default:
+    register-health-indicator: true
+  kling:
+    sliding-window-type: COUNT_BASED
+    sliding-window-size: 20
+    minimum-number-of-calls: 10
+    failure-rate-threshold: 30
+    slow-call-rate-threshold: 50
+    slow-call-duration-threshold: 60s
+    wait-duration-in-open-state: 60s
+    permitted-number-of-calls-in-half-open-state: 3
+    automatic-transition-from-open-to-half-open-enabled: true
+    record-exceptions:
+    - org.springframework.web.reactive.function.client.WebClientResponseException$InternalServerError
+    - org.springframework.web.reactive.function.client.WebClientResponseException$BadGateway
+    - org.springframework.web.reactive.function.client.WebClientResponseException$ServiceUnavailable
+    - org.springframework.web.reactive.function.client.WebClientResponseException$GatewayTimeout
+    - java.util.concurrent.TimeoutException
+    - io.netty.handler.timeout.ReadTimeoutException
+    ignore-exceptions:
+    - org.springframework.web.reactive.function.client.WebClientResponseException$BadRequest
+    - org.springframework.web.reactive.function.client.WebClientResponseException$Unauthorized
+    - org.springframework.web.reactive.function.client.WebClientResponseException$Forbidden
+    - org.springframework.web.reactive.function.client.WebClientResponseException$NotFound
+  instances:
+  kling-submit:
+    base-config: kling
+  ratelimiter:
+  configs:
+  default:
+    register-health-indicator: false
+    timeout-duration: 0ms
+    limit-refresh-period: 60s
+    limit-for-period: 1
+
+logging:
+  level:
+  root: INFO
+  com.miniapp.gateway: DEBUG
+  pattern:
+  console: "%d{HH:mm:ss.SSS} [%thread] [traceId=%X{traceId}] %-5level %logger{20} - %msg%n"
+
+management:
+  endpoints:
+  web:
+  exposure:
+    include: health,info,metrics,prometheus
+  endpoint:
+  health:
+  show-details: when-authorized
+  metrics:
+  enable:
+  resilience4j.ratelimiter: true
+  resilience4j.circuitbreaker: true
