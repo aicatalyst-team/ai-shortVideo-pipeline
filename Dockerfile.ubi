@@ -6,12 +6,15 @@ WORKDIR /opt/app-root/src
 
 # Install system dependencies (ffmpeg, fonts, audio libs)
 USER 0
+# Install system dependencies
+# ffmpeg-free from EPEL requires libSDL2 which may not be available in UBI
+# Install what we can: libsndfile for audio processing
 RUN dnf install -y \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
     /usr/bin/crb enable && \
-    dnf install -y --enablerepo=epel \
-    ffmpeg-free libsndfile \
-    && dnf clean all
+    dnf install -y libsndfile && \
+    dnf install -y --enablerepo=epel --nobest ffmpeg-free || true && \
+    dnf clean all
 
 USER 1001
 
