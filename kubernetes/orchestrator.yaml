@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrator
+  namespace: poc-ai-shortvideo
+  labels:
+    app: orchestrator
+    autopoc.io/project: ai-shortvideo-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchestrator
+  template:
+    metadata:
+      labels:
+        app: orchestrator
+    spec:
+      containers:
+        - name: orchestrator
+          image: quay.io/aicatalyst/ai-shortvideo-pipeline:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: "postgresql+asyncpg://postgres:postgres@postgres:5432/myaivideos"
+            - name: REDIS_URL
+              value: "redis://:autopoc123@redis:6379/0"
+            - name: PYTHONUNBUFFERED
+              value: "1"
+            - name: PYTHONIOENCODING
+              value: "utf-8"
+            - name: LANGFUSE_ENABLED
+              value: "false"
+            - name: CLIP_CONSISTENCY_ENABLED
+              value: "false"
+            - name: AV_RESCUE_ENABLED
+              value: "false"
+            - name: LLM_USE_GATEWAY
+              value: "0"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1536Mi"
+              cpu: "1000m"
+          readinessProbe:
+            httpGet:
+              path: /docs
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+      imagePullSecrets:
+        - name: quay-pull-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orchestrator
+  namespace: poc-ai-shortvideo
+spec:
+  type: ClusterIP
+  selector:
+    app: orchestrator
+  ports:
+    - port: 8000
+      targetPort: 8000

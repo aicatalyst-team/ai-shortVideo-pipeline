@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: poc-ai-shortvideo
+  labels:
+    app.kubernetes.io/name: ai-shortvideo-pipeline
+    app.kubernetes.io/managed-by: autopoc
