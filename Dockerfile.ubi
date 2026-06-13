@@ -8,11 +8,10 @@ WORKDIR /opt/app-root/src
 USER 0
 RUN dnf install -y \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
+    /usr/bin/crb enable && \
     dnf install -y --enablerepo=epel \
     ffmpeg-free libsndfile \
-    google-noto-sans-cjk-ttc-fonts \
-    && dnf clean all && \
-    fc-cache -fv
+    && dnf clean all
 
 USER 1001
 
