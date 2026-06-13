@@ -1,0 +1,39 @@
+# UBI-based Dockerfile for myAiVideos orchestrator
+# Build context: repo root
+FROM registry.access.redhat.com/ubi9/python-312
+
+WORKDIR /opt/app-root/src
+
+# Install system dependencies (ffmpeg, fonts, audio libs)
+USER 0
+RUN dnf install -y \
+    https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
+    dnf install -y --enablerepo=epel \
+    ffmpeg-free libsndfile \
+    google-noto-sans-cjk-ttc-fonts \
+    && dnf clean all && \
+    fc-cache -fv
+
+USER 1001
+
+# Copy requirements first for layer caching
+COPY requirements.txt .
+
+# Install torch CPU variant separately (avoid pulling CUDA)
+RUN pip install --no-cache-dir --timeout 120 \
+    'torch>=2.0,<3' --extra-index-url https://download.pytorch.org/whl/cpu
+
+# Install remaining dependencies from standard PyPI
+RUN pip install --no-cache-dir --timeout 120 -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# OpenShift compatibility
+USER 0
+RUN chgrp -R 0 /opt/app-root && chmod -R g=u /opt/app-root
+USER 1001
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main_v2:app", "--host", "0.0.0.0", "--port", "8000"]
